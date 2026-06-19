@@ -1,18 +1,27 @@
-
 const express = require('express');
 const app = express();
 
-const portfolios = [{ id: 1, name: 'Growth Portfolio', value: 15000 }, { id: 2, name: 'Income Portfolio', value: 10000 }];
-const transactions = [{ id: 1, portfolioId: 1, date: '2023-10-01', type: 'buy', amount: 5000 }, { id: 2, portfolioId: 2, date: '2023-10-02', type: 'sell', amount: 3000 }];
+let watchlist = [];
 const marketData = [{ id: 'AAPL', name: 'Apple Inc.', price: 150 }, { id: 'GOOGL', name: 'Alphabet Inc.', price: 2800 }];
 
-const getPortfolios = () => portfolios;
-const getTransactions = () => transactions;
-const getMarketData = () => marketData;
+app.use(express.json());
 
-app.get('/api/portfolios', (req, res) => res.json(getPortfolios()));
-app.get('/api/transactions', (req, res) => res.json(getTransactions()));
-app.get('/api/marketdata', (req, res) => res.json(getMarketData()));
+app.get('/api/watchlist', (req, res) => res.json(watchlist));
+
+app.post('/api/watchlist', (req, res) => {
+  const asset = marketData.find(asset => asset.id === req.body.id);
+  if (asset) {
+    watchlist.push(asset);
+    res.status(201).json({ message: 'Asset added to watchlist' });
+  } else {
+    res.status(404).json({ message: 'Asset not found' });
+  }
+});
+
+app.delete('/api/watchlist/:id', (req, res) => {
+  watchlist = watchlist.filter(asset => asset.id !== req.params.id);
+  res.json({ message: 'Asset removed from watchlist' });
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
