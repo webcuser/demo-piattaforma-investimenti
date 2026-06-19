@@ -6,7 +6,8 @@ Simula una piattaforma fintech per la gestione di investimenti
 
 1. Install dependencies: `npm install`
 2. Run the development server: `npm start`
-3. Build the project: `npm run build`
+3. Run the mock API server for testing: `node src/api/mockAPI.js`
+4. Build the project: `npm run build`
 
 ## Overview
 
