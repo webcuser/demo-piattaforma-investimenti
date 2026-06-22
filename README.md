@@ -18,3 +18,11 @@ Questo progetto mira a simulare una piattaforma fintech avanzata per la gestione
 - Visualizzazione in tempo reale del portafoglio
 - Analisi avanzata dell'andamento degli investimenti
 - Grafici interattivi per una migliore comprensione dei dati
+- **Nuovo**: Funzionalità per gestire una watchlist con alert sui prezzi
+
+## Uso della Watchlist
+
+- Gli utenti possono aggiungere e rimuovere asset dalla watchlist.
+- Gli alert sui prezzi e gli aggiornamenti delle notizie vengono visualizzati quando simulati.
+
+Semplicemente visita il componente Watchlist e interagisci con gli asset per iniziare a monitorarli.
